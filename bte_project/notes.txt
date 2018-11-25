@@ -1,0 +1,18 @@
+in order to set up a virtual environment
+
+use python3 -m venv ./venv
+
+then use source
+
+source ./venv/bin/activate
+python = python3 now in this environment
+this activates the virtual environment
+
+use deactivate to get out of environment
+
+
+the virtual environment allows you to store dependies 
+in a non global location
+
+in this environment there will be nothing in the pip freeze
+at first

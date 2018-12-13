@@ -16,3 +16,4 @@ class Realtor(models.Model):
         return self.name
 
 # def str returns the name or a title for an entry
+# this allows us to see the name of the user in our django admin dash

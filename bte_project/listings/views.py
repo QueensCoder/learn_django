@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Listing
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -20,9 +20,18 @@ def index(req):
 
 # takes request and sends it to html
 
+# get one  listing by id
+# if  id not found return 404
+
 
 def listing(req, listing_id):
-    return render(req, 'listings/listing.html')
+    listing = get_object_or_404(Listing, pk=listing_id)
+
+    context = {
+        'listing': listing
+    }
+
+    return render(req, 'listings/listing.html', context)
 
 
 def search(req):

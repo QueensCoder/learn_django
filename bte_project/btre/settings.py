@@ -29,12 +29,14 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# when creating a new app you need to run python manga.py startapp -appname-
+# then add the application to settings
 INSTALLED_APPS = [
 
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

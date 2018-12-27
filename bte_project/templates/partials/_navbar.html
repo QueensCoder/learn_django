@@ -27,12 +27,14 @@
 
       <ul class="navbar-nav ml-auto">
         <li class="nav-item mr-3">
-          <a class="nav-link" href="register.html">
+          <a class="nav-link" href="{% url 'register' %}">
+            <!-- how to route aka link between different html pages -->
             <i class="fas fa-user-plus"></i> Register</a
           >
         </li>
         <li class="nav-item mr-3">
-          <a class="nav-link" href="login.html">
+          <!-- how to route aka link between different html pages -->
+          <a class="nav-link" href="{% url 'login' %}">
             <i class="fas fa-sign-in-alt"></i>
 
             Login</a

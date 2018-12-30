@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import messages, auth
 # import models for auth checking to see if user exists
 from django.contrib.auth.models import User
 # Create your views here.
@@ -12,7 +12,7 @@ def register(req):
         # get form values
         first_name = req.POST['first_name']
         last_name = req.POST['last_name']
-        user_name = req.POST['username']
+        username = req.POST['username']
         email = req.POST['email']
         password = req.POST['password']
         password2 = req.POST['password2']
@@ -28,6 +28,18 @@ def register(req):
                     messages.error(req, 'That email already exists')
                     return redirect('register')
 
+                else:
+                    # if all checks are passed
+                    user = User.objects.create_user(
+                        username=username, password=password, email=email, first_name=first_name, last_name=last_name)
+                    # for users that are create auto login below
+                    # auth.login(req, user)
+                    # messages.success(req, 'You are now logged in')
+                    # return redirect('index')
+                    user.save()
+                    messages.success(req, 'You are now registered')
+                    return redirect('login')
+
         else:
             # if passwords do not match for registration
             # send error
@@ -36,19 +48,39 @@ def register(req):
     else:
         return render(req, 'accounts/register.html')
 
+# determines where the user is routed to html
+
+# dont forget to return a response
+
 
 def login(req):
     # login user
     if req.method == 'POST':
-        print('submited')
-        # dont forget to return a response
-        return redirect('register')
+        username = req.POST['username']
+        password = req.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            # if user is found
+            auth.login(req, user)
+            messages.success(req, 'You are now logged in')
+            return redirect('dashboard')
+
+        else:
+            messages.error(req, 'Invalid Login credentials')
+            return redirect('login')
+
     else:
-        return render(req, 'accounts/register.html')
+        # determines where the user is routed to html
+        return render(req, 'accounts/login.html')
 
 
 def logout(req):
-    return redirect('index')
+    if req.method == 'POST':
+        auth.logout(req)
+        messages.success(req, 'You have been logged out')
+        return redirect('index')
 
 
 def dashboard(req):

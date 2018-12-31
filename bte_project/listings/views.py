@@ -46,7 +46,6 @@ def search(req):
    # to filter the queryset from the data base
    # see description__
     if 'keywords' in req.GET:
-        print('<><><>><')
         keywords = req.GET['keywords']
         queryset_list = queryset_list.filter(description__icontains=keywords)
 

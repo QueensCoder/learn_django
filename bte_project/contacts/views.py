@@ -24,4 +24,4 @@ def contact(req):
         messages.success(
             req, 'Your request has been submitted, a realtor will get back to you soon')
 
-        return redirect('/listing/' + listing_id)
+        return redirect('/listings/' + listing_id)

@@ -41,7 +41,7 @@
       <div class="col-md-9">
         <!-- Home Main Image -->
         <img
-          src="{{listing.photo_main.url}}"
+          src="{{ listing.photo_main.url }}"
           alt=""
           class="img-main img-fluid mb-3"
         />
@@ -188,7 +188,10 @@
             name="realtor_email"
             value="{{ listing.realtor.email }}"
           />
-          <input type="hidden" value="{{ listing.id }}" />
+          <!-- lack of name causes a dict key error
+          the post req uses the name for the fields that are used to grab
+        the values in views.py -->
+          <input type="hidden" name="listing_id" value="{{ listing.id }}" />
           <div class="form-group">
             <label for="property_name" class="col-form-label">Property:</label>
             <input

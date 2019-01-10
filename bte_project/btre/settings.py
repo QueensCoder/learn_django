@@ -144,3 +144,11 @@ MEDIA_URL = '/media/'
 MESSAGE_TAGS = {
     messages.INFO: 'danger'
 }
+
+# email config
+
+# EMAIL_HOST = 'smpt.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER =
+# EMAIL_HOST_PASSWORD =
+# EMAIL_USE_TLS = True
